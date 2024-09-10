@@ -1,0 +1,38 @@
+name: Create Repository from Template
+
+on:
+  workflow_dispatch:
+    inputs:
+      filiera:
+        type: choice
+        description: Filiera di appartenenza
+        options: 
+        - corebanking
+        - test
+      repositoryName:
+        type: string
+        required: true        
+        description: Nome del repository       
+      apiSpecName:
+        type: string
+        required: true              
+        description: Nome file API Spec
+jobs:
+  create_repository:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
+      - uses: actions/checkout@v2
+      - name: Create repository from template
+        run: |
+           chmod +x ./scripts/createRepositoryFromTemplate.sh
+           ./scripts/createRepositoryFromTemplate.sh
+        shell: bash
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ORG: ${{ github.event.inputs.filiera }}
+          REPO: ${{ github.event.inputs.repositoryName }}
+          API_SPEC_NAME: ${{ github.event.inputs.apiSpecName }}
