@@ -37,10 +37,11 @@ jobs:
       - name: Create repository from template
         run: |
            chmod +x ./scripts/createRepositoryFromTemplate.sh
-           ./scripts/createRepositoryFromTemplate.sh
+           ./scripts/createRepositoryFromTemplate.sh --$VISIBILITY $ORG $REPO $API_SPEC_NAME
         shell: bash
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           ORG: ${{ github.event.inputs.filiera }}
           REPO: ${{ github.event.inputs.repositoryName }}
           API_SPEC_NAME: ${{ github.event.inputs.apiSpecName }}
+          VISIBILITY: ${{ github.event.inputs.visibility }}
