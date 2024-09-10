@@ -30,6 +30,11 @@ on:
 jobs:
   create_repository:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      repository-projects: write
+      actions: write
     steps:
       - name: Dump GitHub context
         env:
