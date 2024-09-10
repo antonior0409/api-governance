@@ -3,6 +3,9 @@ name: Create Repository from Template
 on:
   workflow_dispatch:
     inputs:
+      admin_token:
+      type: string
+      required: true
       visibility:
         type: choice
         description: Filiera di appartenenza
