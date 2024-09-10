@@ -1,32 +1,4 @@
 #!/bin/bash
-
-SCRIPT=$(basename "$0")
-
-function usage
-{
-    >&2 echo "Usage: $SCRIPT [--private|--internal|--public] organization repository api-spec-file-name"
-    exit 2
-}
-
-case $# in
-    2)
-        if [[ $1 == -* ]]; then
-            usage
-        fi
-        VISIBILITY="--internal" # default
-        ;;
-    3)
-        if [[ $1 == "--private" || $1 == "--internal" || $1 == "--public" ]]; then
-            VISIBILITY="$1"
-            shift
-        else
-            usage
-        fi
-        ;;
-    *)
-        usage
-esac
-
 ORG="$1"
 REPO="$2"
 API_SPEC_FILE=api-spec-file-name
