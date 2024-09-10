@@ -20,11 +20,13 @@ on:
       repositoryName:
         type: string
         required: true        
-        description: Nome del repository       
+        description: Nome del repository
+        default: test-template1
       apiSpecName:
         type: string
         required: true              
         description: Nome file API Spec
+        default: order-service
 jobs:
   create_repository:
     runs-on: ubuntu-latest
