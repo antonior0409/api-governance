@@ -3,20 +3,21 @@ name: Create Repository from Template
 on:
   workflow_dispatch:
     inputs:
-      adminToken:
+      accessToken:
         type: string
         required: true
+        description: Access token provided by requesting user
       visibility:
         type: choice
-        description: Filiera di appartenenza
+        description: Repository visibility
         default: public
         options: 
         - internal
         - public
         - private
-      filiera:
+      organization:
         type: choice
-        description: Filiera di appartenenza
+        description: Oragnization intesa come Filiera di appartenenza
         options: 
         - corebanking
         - test
@@ -50,10 +51,8 @@ jobs:
            ./scripts/createRepositoryFromTemplate.sh --$VISIBILITY $ORG $REPO $API_SPEC_NAME
         shell: bash
         env:
-          GITHUB_TOKEN_Personal: ${{ github.event.inputs.adminToken }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
-          ORG: ${{ github.event.inputs.filiera }}
+          GITHUB_TOKEN: ${{ github.event.inputs.accessToken }}
+          ORG: ${{ github.event.inputs.organization }}
           REPO: ${{ github.event.inputs.repositoryName }}
           API_SPEC_NAME: ${{ github.event.inputs.apiSpecName }}
           VISIBILITY: ${{ github.event.inputs.visibility }}
