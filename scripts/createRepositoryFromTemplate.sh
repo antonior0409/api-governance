@@ -1,7 +1,8 @@
 #!/bin/bash
-ORG="$1"
-REPO="$2"
-API_SPEC_FILE=api-spec-file-name
+VISIBILITY="$1"
+ORG="$2"
+REPO="$3"
+API_SPEC_FILE="$4"
 TMPL_REPO=antonior0409/openapi-template
 
 set -e
@@ -16,4 +17,4 @@ git init -b main
 echo $ORG > $API_SPEC_FILE.txt
 git add .
 git commit -am "Initial commit"
-gh repo create ${VISIBILITY} "${ORG}/${REPO}" --source=. --remote=origin --push
+gh repo create ${VISIBILITY} "antonior0409/${REPO}" --source=. --remote=origin --push
