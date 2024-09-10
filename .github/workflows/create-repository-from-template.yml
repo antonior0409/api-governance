@@ -3,6 +3,14 @@ name: Create Repository from Template
 on:
   workflow_dispatch:
     inputs:
+      visibility:
+        type: choice
+        description: Filiera di appartenenza
+        default: public
+        options: 
+        - internal
+        - public
+        - private
       filiera:
         type: choice
         description: Filiera di appartenenza
