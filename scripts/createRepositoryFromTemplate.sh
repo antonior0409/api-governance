@@ -9,8 +9,8 @@ set -e
 
 mkdir "$REPO"
 gh repo clone "${TMPL_REPO}" "${REPO}" -- --depth 1
-git config --global user.email "antonior0409@gmail.com"
-git config --global user.name "antonior0409"
+git config --global user.email "no-reply@github.com" 
+git config --global user.name "GitHub Actions" 
 cd "$REPO" 
 rm -rf .git
 git init -b main
