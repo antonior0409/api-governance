@@ -3,7 +3,7 @@ name: Create Repository from Template
 on:
   workflow_dispatch:
     inputs:
-      admin_token:
+      adminToken:
         type: string
         required: true
       visibility:
@@ -50,7 +50,7 @@ jobs:
            ./scripts/createRepositoryFromTemplate.sh --$VISIBILITY $ORG $REPO $API_SPEC_NAME
         shell: bash
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ github.event.inputs.adminToken }}
           ORG: ${{ github.event.inputs.filiera }}
           REPO: ${{ github.event.inputs.repositoryName }}
           API_SPEC_NAME: ${{ github.event.inputs.apiSpecName }}
